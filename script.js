@@ -1,5 +1,6 @@
 const query = document.querySelector.bind(document);
-
+const queryAll = document.querySelectorAll.bind(document);
+const list = query('#lista-tarefas');
 function setColor(task) {
   task.addEventListener('click', (event) => {
     if (query('.setColorGrey')) {
@@ -16,7 +17,7 @@ function setChecked(task) {
 
 function adicionaTarefa() {
   const button = query('#criar-tarefa');
-  const list = query('#lista-tarefas');
+
   button.addEventListener('click', () => {
     const newList = document.createElement('li');
     newList.className = 'task';
@@ -30,6 +31,14 @@ function adicionaTarefa() {
 adicionaTarefa();
 
 function clearList() {
-  query('#lista-tarefas').innerText = '';
+  list.innerText = '';
 }
 query('#apaga-tudo').addEventListener('click', clearList);
+
+function removeDone() {
+  const selected = queryAll('.completed');
+  for (let i = 0; i < selected.length; i += 1) {
+    list.removeChild(selected[i]);
+  }
+}
+query('#remover-finalizados').addEventListener('click', removeDone);
