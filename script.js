@@ -17,7 +17,6 @@ function setChecked(task) {
 
 function adicionaTarefa() {
   const button = query('#criar-tarefa');
-
   button.addEventListener('click', () => {
     const newList = document.createElement('li');
     newList.className = 'task';
@@ -90,3 +89,39 @@ function returnSavedTasks() {
   }
 }
 returnSavedTasks();
+
+function moveUp() {
+  const itensList = list.childNodes;
+  for (let i = 1; i < itensList.length; i += 1) {
+    if (itensList[i].classList.contains('setColorGrey')) {
+      const up = itensList[i].innerText;
+      const down = itensList[i - 1].innerText;
+
+      itensList[i - 1].innerText = up;
+      itensList[i - 1].classList.add('setColorGrey');
+
+      itensList[i].innerText = down;
+      itensList[i].classList.remove('setColorGrey');
+      break;
+    }
+  }
+}
+query('#mover-cima').addEventListener('click', moveUp);
+
+function moveDown() {
+  const itensList = list.childNodes;
+  for (let i = 0; i < itensList.length - 1; i += 1) {
+    if (itensList[i].classList.contains('setColorGrey')) {
+      const down = itensList[i].innerText;
+      const up = itensList[i + 1].innerText;
+
+      itensList[i + 1].innerText = down;
+      itensList[i + 1].classList.add('setColorGrey');
+
+      itensList[i].innerText = up;
+      itensList[i].classList.remove('setColorGrey');
+      break;
+    }
+  }
+}
+query('#mover-baixo').addEventListener('click', moveDown);
