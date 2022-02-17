@@ -125,3 +125,10 @@ function moveDown() {
   }
 }
 query('#mover-baixo').addEventListener('click', moveDown);
+
+function removeSelected() {
+  const selected = query('.setColorGrey');
+  list.removeChild(selected);
+}
+
+query('#remover-selecionado').addEventListener('click', removeSelected);
